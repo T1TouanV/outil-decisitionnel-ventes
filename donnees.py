@@ -83,3 +83,4 @@ def afficher_echantillon(ventes, n=5):
     """
     for vente in ventes[:n]:
         print(vente)
+       
