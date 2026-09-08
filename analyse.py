@@ -25,7 +25,14 @@ def chiffre_affaires_par_region(ventes):
     dict: Dictionnaire de la forme :
         { "Normandie": 12000, "Bretagne": 8500, ... }
     """
-    pass
+    CA={}
+    for vente in ventes:
+        region = vente["region"]
+        if region not in CA:
+            CA[region] = vente["quantite"] * vente["prix_unitaire"]
+        else:
+            CA[region] = CA[region] + vente["quantite"] * vente["prix_unitaire"]
+    return CA
 
 
 def produit_le_plus_vendu(ventes):
