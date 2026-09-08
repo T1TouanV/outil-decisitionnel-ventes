@@ -25,15 +25,14 @@ def chiffre_affaires_par_region(ventes):
     dict: Dictionnaire de la forme :
         { "Normandie": 12000, "Bretagne": 8500, ... }
     """
-    chiffre_affaires = {}
+    CA={}
     for vente in ventes:
         region = vente["region"]
-        montant = calculer_montant_vente(vente)
-        if region in chiffre_affaires:
-            chiffre_affaires[region] += montant
+        if region not in CA:
+            CA[region] = vente["quantite"] * vente["prix_unitaire"]
         else:
-            chiffre_affaires[region] = montant
-    return chiffre_affaires
+            CA[region] = CA[region] + vente["quantite"] * vente["prix_unitaire"]
+    return CA
 
 
 def produit_le_plus_vendu(ventes):
@@ -64,7 +63,14 @@ def chiffre_affaires_par_mois(ventes):
             ...
         }
     """
-    pass
+    CA={}
+    for vente in ventes:
+        mois = vente["mois"]
+        if mois not in CA:
+            CA[mois] = vente["quantite"] * vente["prix_unitaire"]
+        else:
+            CA[mois] = CA[mois] + vente["quantite"] * vente["prix_unitaire"]
+    return CA
 
 
 def meilleure_region(ventes):
@@ -90,8 +96,10 @@ def montant_moyen_vente(ventes):
     Returns: 
     float, Montant moyen d'une vente.
     """
-    pass
-
+    if not ventes:
+        return 0
+    total = sum(vente["quantite"]*vente["prix_unitaire"] for vente in ventes)
+    return total/len(ventes)
 
 def generer_recommandation(ventes):
     """
