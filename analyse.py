@@ -84,7 +84,7 @@ def montant_moyen_vente(ventes):
     """
     total_montants = sum(calculer_montant_vente(vente) for vente in ventes)
     return total_montants / len(ventes)
-    pass
+    
 
 
 def generer_recommandation(ventes):
@@ -104,7 +104,22 @@ def generer_recommandation(ventes):
         
     Returns
     str: Recommandation décisionnelle.
+    
     """
+    ca_par_region = {}
+    for vente in ventes:
+        region = vente["region"]
+        montant = calculer_montant_vente(vente)
+        ca_par_region[region] = ca_par_region.get(region, 0) + montant
+
+    # Identification de la région la plus performante
+    meilleure_region = max(ca_par_region, key=ca_par_region.get)
+
+    return (
+        f"La région {meilleure_region} est la plus performante avec un chiffre d'affaires "
+        f"de {ca_par_region[meilleure_region]} €. Il est recommandé d'y accentuer les "
+        f"efforts commerciaux et d'analyser les facteurs de ce succès pour les répliquer."
+    )
     pass
 
 
