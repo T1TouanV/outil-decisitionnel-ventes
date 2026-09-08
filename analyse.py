@@ -82,6 +82,8 @@ def montant_moyen_vente(ventes):
     Returns: 
     float, Montant moyen d'une vente.
     """
+    total_montants = sum(calculer_montant_vente(vente) for vente in ventes)
+    return total_montants / len(ventes)
     pass
 
 
