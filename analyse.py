@@ -82,8 +82,10 @@ def montant_moyen_vente(ventes):
     Returns: 
     float, Montant moyen d'une vente.
     """
-    pass
-
+    if not ventes:
+        return 0
+    total = sum(vente["quantite"]*vente["prix_unitaire"] for vente in ventes)
+    return total/len(ventes)
 
 def generer_recommandation(ventes):
     """
