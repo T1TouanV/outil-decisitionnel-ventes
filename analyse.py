@@ -63,7 +63,14 @@ def chiffre_affaires_par_mois(ventes):
             ...
         }
     """
-    pass
+    CA={}
+    for vente in ventes:
+        mois = vente["mois"]
+        if mois not in CA:
+            CA[mois] = vente["quantite"] * vente["prix_unitaire"]
+        else:
+            CA[mois] = CA[mois] + vente["quantite"] * vente["prix_unitaire"]
+    return CA
 
 
 def meilleure_region(ventes):
