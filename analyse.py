@@ -45,6 +45,7 @@ def produit_le_plus_vendu(ventes):
     Returns: Tuple contenant : (nom_du_produit, quantité_totale)
     Exemple: ("Ordinateur", 145)    
     """
+    #vide
     produits={}
     for vente in ventes:
         prod = vente["produit"]
