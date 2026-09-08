@@ -76,7 +76,22 @@ def meilleure_region(ventes):
     Returns: 
     tuple, Exemple : ("Normandie", 25800)
     """
-    pass
+    chiffre = {}
+    for vente in ventes:
+        region = vente["region"]
+        montant = vente["quantite"] * vente["prix_unitaire"]
+
+        if region in chiffre:
+            chiffre[region] += montant
+
+        else:
+            chiffre[region] = montant
+
+    region = max(chiffre, key=chiffre.get)
+
+    return (region, chiffre[region])
+
+
 
 
 def montant_moyen_vente(ventes):
