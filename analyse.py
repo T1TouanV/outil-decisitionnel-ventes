@@ -34,6 +34,14 @@ def chiffre_affaires_par_region(ventes):
             CA[region] = CA[region] + vente["quantite"] * vente["prix_unitaire"]
     return CA
 
+def chiffre_affaires_par_produit(ventes):
+    for vente in ventes:
+        region = vente["region"]
+        if region not in CA:
+            CA[region] = vente["quantite"] * vente["prix_unitaire"]
+        else:
+            CA[region] = CA[region] + vente["quantite"] * vente["prix_unitaire"]
+    return CA
 
 def produit_le_plus_vendu(ventes):
     """
