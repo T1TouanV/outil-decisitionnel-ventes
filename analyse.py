@@ -142,6 +142,7 @@ def generer_recommandation(ventes):
     Returns
     str: Recommandation décisionnelle.
     """
+    print("ma modification")
     pass
 
 
